@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import { Counter } from '../features/counter/Counter';
 import './App.css';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
         <Counter />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        </p> 
         <span>
           <span>Learn </span>
           <a
