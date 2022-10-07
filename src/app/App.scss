@@ -1,3 +1,5 @@
+@use '/src/variables' as v;
+
 .App {
   text-align: center;
 }
@@ -23,7 +25,7 @@
 }
 
 .App-link {
-  color: rgb(112, 76, 182);
+  color: v.$app-color
 }
 
 @keyframes App-logo-float {
