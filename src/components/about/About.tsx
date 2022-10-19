@@ -11,8 +11,8 @@ export function About() {
             <h1>About this site...</h1>
             <div>I am {age} years old.</div>
 
-            <Button type="button" onClick={() => setAge(age - 1)}>- Subtract</Button>
-            <Button type="button" onClick={() => setAge(age + 1)}>+ Add</Button>
+            <Button variant="outlined" type="button" onClick={() => setAge(age - 1)}>- Subtract</Button>
+            <Button variant="outlined" type="button" onClick={() => setAge(age + 1)}>+ Add</Button>
         </div>
     );
 }
