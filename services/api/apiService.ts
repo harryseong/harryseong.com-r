@@ -8,15 +8,15 @@ const [isLoading] = useState(false);
 
 export async function callExampleAPI(name: string) {
     try {
-        const {data} = await axios.get(
+        const { data } = await axios.get(
             `https://api.harryseong.com/test/v1/example?name=${name}`,
-            {headers: {'Content-Type': 'application/json', Accept: 'application/json' }}
+            { headers: { 'Content-Type': 'application/json', Accept: 'application/json' } }
         );
 
         console.log('Data: ' + JSON.stringify(data));
-    } catch(err) {
+    } catch (err) {
         console.error(err)
     } finally {
         console.log('Done with "callExampleAPI".')
-    }   
+    }
 }

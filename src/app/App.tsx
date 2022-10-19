@@ -5,6 +5,7 @@ import { Layout } from '../components/layout/Layout';
 import { Counter } from '../components/counter/Counter';
 import { Home } from '../components/home/Home';
 import { About } from '../components/about/About'
+import { Places } from '../components/places/Places'
 import './App.scss';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route index element={<Home />}></Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/counter" element={<Counter />}></Route>
+            <Route path="/places" element={<Places />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
