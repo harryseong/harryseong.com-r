@@ -21,15 +21,5 @@ export function Navbar() {
                 </Toolbar>
             </Container>
         </AppBar>
-        // <div>
-        //     <nav>
-        //         <ul>
-        //             <li><Link to="/">Home</Link></li>
-        //             <li><Link to="/places">Places</Link></li>
-        //             <li><Link to="/about">About</Link></li>
-        //             <li><Link to="/counter">Counter</Link></li>
-        //         </ul>
-        //     </nav>
-        // </div>
     )
 }
