@@ -8,9 +8,14 @@ import { About } from '../components/about/About'
 import { Places } from '../components/places/Places'
 import './App.scss';
 
+import { useAppSelector } from '../app/hooks';
+import { selectAppConfig } from '../components/app-config/AppConfigSlice';
+
 function App() {
+  const darkMode: boolean = useAppSelector(selectAppConfig);
+
   return (
-    <div className="App">
+    <div className={"App " + (darkMode ? "dark" : "light")}>
 
       <BrowserRouter>
         <Routes>
