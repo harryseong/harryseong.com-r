@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-//https://api.harryseong.com/test/v1/example?name=Harry
+// https://api.harryseong.com/test/v1/example?name=Harry
 
 const [data] = useState();
 const [isLoading] = useState(false);

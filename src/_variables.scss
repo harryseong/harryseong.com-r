@@ -1,2 +1,14 @@
 
 $app-color: rgb(76, 182, 78);
+
+div.light {
+    color: black;
+    background-color: white;
+    transition: 0.3s;
+}
+
+div.dark {
+    color: white;
+    background-color: black;
+    transition: 0.3s;
+}
