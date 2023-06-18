@@ -1,6 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchPlaces } from './placesAPI';
 import { LocalStorageService } from '../../services/local-storage/localStorageService';
+import { ApiService } from '../../services/api/apiService';
 
 
 // Define Place structure
@@ -40,7 +40,7 @@ export interface PlacesState {
 }
 
 // Define PlacesState initial state (if any)
-const seoulCoords: Coords = {lng: 126.97, lat: 37.56};
+const seoulCoords: Coords = { lng: 126.97, lat: 37.56 };
 const initialState: PlacesState = {
     value: {
         mapbox: {
@@ -57,9 +57,9 @@ const initialState: PlacesState = {
     error: ''
 }
 
-// Define getPlaces thunk
+// Define getPlaces thunk.
 export const fetchPlacesThunk = createAsyncThunk('places/fetchPlaces', () => {
-    return fetchPlaces();
+    return ApiService.fetchPlaces();
 });
 
 // Leverage the RTK createSlice function.
@@ -72,9 +72,9 @@ export const placesSlice = createSlice({
             state.status = 'succeeded';
         },
         selectPlace: (state, action: PayloadAction<number>) => {
-             const places = (state.value.places == null) ? null : state.value.places;
-             const selectedPlace = (places == null) ? null : places.find(place => place.place_id == action.payload);
-             state.value.selectedPlace = (selectedPlace == null) ? null : selectedPlace;
+            const places = (state.value.places == null) ? null : state.value.places;
+            const selectedPlace = (places == null) ? null : places.find(place => place.place_id === action.payload);
+            state.value.selectedPlace = (selectedPlace == null) ? null : selectedPlace;
         },
         selectPreviousPlace: (state) => {
             if (state.value.selectedPlace != null) {

@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AppBar, Button, Box, Container, IconButton, Toolbar, Typography, } from '@mui/material';
+import { AppBar, Button, Box, Container, IconButton, Toolbar } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
-import styles from './Navbar.module.scss';
+import { regular } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { selectAppConfig, toggle } from '../app-config/AppConfigSlice'
