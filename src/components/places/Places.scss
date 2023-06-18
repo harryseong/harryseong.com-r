@@ -1,0 +1,163 @@
+@use '/src/variables' as v;
+
+div.page-header {
+    margin: 1em 0;
+
+    .page-title {
+        font-size: 2.5em;
+        font-weight: 500;
+        text-decoration: none;
+        color: v.$white;
+        user-select: none;
+    }
+    .page-title.underline-left:before {
+        height: 0.035em;
+        background-color: v.$white-opc50;
+    }
+    .page-title.underline-left:hover:before {
+        background-color: v.$white;
+        transition: 300ms;
+        visibility: visible;
+        width: 100%;
+    }
+    
+    .page-subtitle {
+        font-size: 0.75em;
+        font-style: italic;
+        user-select: none;
+        color: v.$white-opc75
+    }
+    .page-subtitle.pink {
+        color: v.$pink;
+    }
+    .page-subtitle.purple {
+        color: v.$purple;
+    }
+    .page-subtitle.yellow {
+        color: v.$yellow;
+    }
+    .page-subtitle.green {
+        color: v.$green;
+    }
+    .page-subtitle.teal {
+        color: v.$teal;
+    }
+}
+
+.map-container {
+    height: 25em;
+    width: 100%;
+}
+
+div.places-nav {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    justify-content: center;
+    padding: 1em;
+
+    div.places-nav-slider {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5em;
+
+        .places-slider {
+            width: 50%;
+            margin: 0 0.5em;
+        }
+
+        button.change-place-btn {
+            margin: 0.2em;
+            border-radius: 0.15em;
+            border: 0.05em solid v.$clear;
+            background-color: v.$clear;
+            padding: 0.5em 1em;
+            color: v.$white-opc75;
+            font-size: 0.8em;
+            font-weight: 200;
+            transition: 300ms;
+          
+            .arrow-icon {
+              color: v.$white;
+            }
+        }
+        
+        button.change-place-btn:hover {
+            border: 0.05em solid v.$clear;
+            border-radius: 0.2em;
+            background-color: v.$white-opc10;
+            color: v.$white-opc75;
+            cursor: pointer;
+            transition: 300ms;
+        }
+    }
+    
+    div.place-btn-div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0 1em;
+    
+        button.place-btn {
+            margin: 0.2em;
+            border: 0.05em solid v.$white-opc10;
+            border-radius: 0.2em;
+            background-color: v.$clear;
+            padding: 1.5em 2em;
+            color: v.$white-opc75;
+            font-size: 0.5em;
+            font-weight: 300;
+            transition: 300ms;
+        }
+        
+        button.place-btn:hover {
+            border-color: v.$white-opc50;
+            background-color: v.$white-opc30;
+            color: v.$white;
+            cursor: pointer;
+            transition: 300ms;
+        }
+        
+        button.place-btn.active {
+            color: v.$white;
+            background-color: v.$white-opc10;
+            border: 0.1em solid v.$white-opc60;
+            transition: 300ms;
+        }
+    }    
+}
+
+div.selected-place {
+    display: flex;
+    justify-content: center;
+
+    div.selected-place-details {
+        width: 55%;
+
+        .place-name {
+            .marker-icon {
+                color: v.$teal;
+            }
+
+            color: v.$white;
+            font-size: 1.2em;
+            margin-top: 1em;
+            letter-spacing: 0.05em;
+          }
+          
+          .place-years {
+            color: v.$white;
+            font-size: 0.75em;
+            font-weight: 600;
+          }
+          
+          .place-text {
+            font-size: 0.75em;
+            font-weight: 300;
+            color: v.$white-opc75;
+          }
+    } 
+}
