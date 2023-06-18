@@ -29,8 +29,9 @@ export function Places() {
 
         // Fetch places data once per app load.
         if (placesState.status === 'idle') {
-            const cachedPlaces: CachedPlaces = LocalStorageService.getPlaces();
 
+            // Attempt places data fetch from local storage:
+            const cachedPlaces: CachedPlaces = LocalStorageService.getPlaces();
             if (cachedPlaces == null) {
                 console.log('No cached places. Fetching places.');
                 dispatch(fetchPlacesThunk());
@@ -91,6 +92,7 @@ export function Places() {
         if (map.current != null) map.current.flyTo({ zoom: 5, center: center })
     }
 
+    // 'now' / 'then' nav buttons
     const placesNavButton = (type: 'now' | 'then') => {
         function handleClick() {
             if (placesState.value.selectedPlace != null) {
@@ -123,6 +125,7 @@ export function Places() {
             )
     }
 
+    // Places slider.
     const placesNavSlider = <>
         <Slider className='places-slider'
             aria-label="places slider"
@@ -145,11 +148,11 @@ export function Places() {
 
         const active = placesState.value.selectedPlace?.place_id === place.place_id;
 
-        return (<button onClick={handleClick} className={active ? 'place-btn active' : 'place-btn'}>{place.displayName}</button>)
+        return (<button onClick={handleClick} className={active ? 'place-btn active' : 'place-btn'} key={place.place_id}>{place.displayName}</button>)
     }
 
     const placeButtons = <>
-        {useSelector((state: RootState) => state.places.value.places).map(place => <>{placeButton(place)}</>)}
+        {places.map(place => <>{placeButton(place)}</>)}
     </>
 
     const selectedPlace = useSelector((state: RootState) => state.places.value.selectedPlace);
@@ -176,9 +179,7 @@ export function Places() {
             <div className='places-nav'>
 
                 <div className='places-nav-slider'>
-                    {placesNavButton('then')}
-                    {placesNavSlider}
-                    {placesNavButton('now')}
+                    {placesNavButton('then')}{placesNavSlider}{placesNavButton('now')}
                 </div>
 
                 <div className='place-btn-div'>

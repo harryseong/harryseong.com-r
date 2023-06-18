@@ -6,11 +6,15 @@ import { regular } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- 
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { selectAppConfig, toggle } from '../app-config/AppConfigSlice'
+import { logoff, logon } from '../auth/authSlice';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../app/store';
 
 
 export function Navbar() {
     const darkMode: boolean = useAppSelector(selectAppConfig);
     const dispatch = useAppDispatch();
+    const authState = useSelector((state: RootState) => state.auth);
 
     return (
         <AppBar position="static" color={darkMode ? "primary" : "secondary"} sx={{ transition: '0.3s' }} className={darkMode ? 'dark' : 'light'}>
@@ -21,6 +25,11 @@ export function Navbar() {
                         <Button component={Link} to="/places" sx={{ my: 2, color: 'white', display: 'block' }}>Places</Button>
                         <Button component={Link} to="/about" sx={{ my: 2, color: 'white', display: 'block' }}>About</Button>
                         <Button component={Link} to="/counter" sx={{ my: 2, color: 'white', display: 'block' }}>Counter</Button>
+
+                        {authState.value.authenticated ?
+                            <Button onClick={() => dispatch(logoff())} sx={{ my: 2, color: 'white', display: 'block' }}>Logout</Button> :
+                            <Button onClick={() => dispatch(logon())} sx={{ my: 2, color: 'white', display: 'block' }}>Login</Button>
+                        }
                     </Box>
                     <IconButton onClick={() => dispatch(toggle())} aria-label="toggle between dark and light mode" size="large">
                         {darkMode ? <FontAwesomeIcon icon={regular('sun')} /> : <FontAwesomeIcon icon={regular('moon')} />}
