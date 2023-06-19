@@ -148,6 +148,7 @@ export function Places() {
         />
     </>
 
+    // Place button.
     const placeButton = (place: Place) => {
         function handleClick() {
             dispatch(selectPlace(place.place_id));
@@ -158,7 +159,6 @@ export function Places() {
 
         return (<button onClick={handleClick} className={active ? 'place-btn active' : 'place-btn'} key={place.place_id}>{place.displayName}</button>)
     }
-
     const placeButtons = <>
         {places.map(place => <>{placeButton(place)}</>)}
     </>
