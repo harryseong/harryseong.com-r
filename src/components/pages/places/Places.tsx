@@ -1,19 +1,25 @@
 import './Places.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../app/store';
+import { RootState } from '../../../app/store';
 import { useEffect, useRef } from 'react';
 import { Coords, Place, fetchPlacesThunk, selectNextPlace, selectPlace, selectPreviousPlace, setPlaces } from './placesSlice';
 import mapboxgl from 'mapbox-gl';
 import { Slider } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
-import { CachedPlaces, LocalStorageService } from '../../services/local-storage/localStorageService';
+import { CachedPlaces, LocalStorageService } from '../../../services/local-storage/localStorageService';
 import moment from 'moment';
-import { TypeAnimation } from 'react-type-animation';
+import { PageHeader, PageHeaderProps } from '../../shared/page-header/PageHeader';
 
 
 export function Places() {
     const dispatch: any = useDispatch();
+
+    const pageHeaderProps: PageHeaderProps = {
+        title: 'places',
+        subtitle: 'where we\'ve been, where we are...',
+        color: 'teal'
+    };
 
     // Places State
     const placesState = useSelector((state: RootState) => state.places);
@@ -168,24 +174,14 @@ export function Places() {
         :
         <div>Loading...</div>
 
+
     return (
         <div className='content'>
-            <div className='page-header'>
-                <div className='page-title'>places</div>
-                <TypeAnimation
-                    className='page-subtitle teal'
-                    sequence={['where we\'ve been, where we are...']}
-                    wrapper="div"
-                    speed={80}
-                    cursor={false}
-                    repeat={0}
-                />
-            </div>
+            <PageHeader title={pageHeaderProps.title} subtitle={pageHeaderProps.subtitle} color={pageHeaderProps.color} />
 
             <div ref={mapContainer} className="map-container" />
 
             <div className='places-nav'>
-
                 <div className='places-nav-slider'>
                     {placesNavButton('then')}{placesNavSlider}{placesNavButton('now')}
                 </div>
@@ -193,7 +189,6 @@ export function Places() {
                 <div className='place-btn-div'>
                     {placeButtons}
                 </div>
-
             </div>
 
             <div className='selected-place'>

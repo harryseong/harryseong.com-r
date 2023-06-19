@@ -1,4 +1,4 @@
-import { Place } from "../../components/places/placesSlice";
+import { Place } from "../../components/pages/places/placesSlice";
 import moment from 'moment';
 
 export interface CachedPlaces {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { useAppSelector, useAppDispatch } from '../../../app/hooks';
 import {
   decrement,
   increment,
@@ -10,16 +10,26 @@ import {
   selectCount,
 } from './counterSlice';
 import styles from './Counter.module.scss';
+import { PageHeader, PageHeaderProps } from '../../shared/page-header/PageHeader';
 
 export function Counter() {
-  const count = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
+
+  const pageHeaderProps: PageHeaderProps = {
+    title: 'counter',
+    subtitle: '1, 2, 3, 4, 5, 6, 7...',
+    color: 'pink'
+  };
+
+  const count = useAppSelector(selectCount);
   const [incrementAmount, setIncrementAmount] = useState('2');
 
   const incrementValue = Number(incrementAmount) || 0;
 
   return (
     <div className='content'>
+      <PageHeader title={pageHeaderProps.title} subtitle={pageHeaderProps.subtitle} color={pageHeaderProps.color} />
+
       <div className={styles.row}>
         <button
           className={styles.button}

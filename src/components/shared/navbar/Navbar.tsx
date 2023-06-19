@@ -4,16 +4,17 @@ import { AppBar, Button, Box, Container, IconButton, Toolbar } from '@mui/materi
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { regular } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { useAppSelector, useAppDispatch } from '../../../app/hooks';
 import { selectAppConfig, toggle } from '../app-config/AppConfigSlice'
 import { logoff, logon } from '../auth/authSlice';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../app/store';
+import { RootState } from '../../../app/store';
 
 
 export function Navbar() {
-    const darkMode: boolean = useAppSelector(selectAppConfig);
     const dispatch = useAppDispatch();
+
+    const darkMode: boolean = useAppSelector(selectAppConfig);
     const authState = useSelector((state: RootState) => state.auth);
 
     return (
@@ -23,8 +24,8 @@ export function Navbar() {
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         <Button component={Link} to="/" sx={{ my: 2, color: 'white', display: 'block' }}>HARRY SEONG</Button>
                         <Button component={Link} to="/places" sx={{ my: 2, color: 'white', display: 'block' }}>Places</Button>
-                        <Button component={Link} to="/about" sx={{ my: 2, color: 'white', display: 'block' }}>About</Button>
                         <Button component={Link} to="/counter" sx={{ my: 2, color: 'white', display: 'block' }}>Counter</Button>
+                        <Button component={Link} to="/about" sx={{ my: 2, color: 'white', display: 'block' }}>About</Button>
 
                         {authState.value.authenticated ?
                             <Button onClick={() => dispatch(logoff())} sx={{ my: 2, color: 'white', display: 'block' }}>Logout</Button> :

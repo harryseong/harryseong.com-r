@@ -1,6 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { LocalStorageService } from '../../services/local-storage/localStorageService';
-import { ApiService } from '../../services/api/apiService';
+import { LocalStorageService } from '../../../services/local-storage/localStorageService';
+import { ApiService } from '../../../services/api/apiService';
 
 
 // Define Place structure

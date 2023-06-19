@@ -1,0 +1,45 @@
+@use '/src/variables' as v;
+
+div.page-header {
+    margin: 1em 0;
+
+    .page-title {
+        font-size: 2.5em;
+        font-weight: 500;
+        text-decoration: none;
+        color: v.$white;
+        user-select: none;
+    }
+    .page-title.underline-left:before {
+        height: 0.035em;
+        background-color: v.$white-opc50;
+    }
+    .page-title.underline-left:hover:before {
+        background-color: v.$white;
+        transition: 300ms;
+        visibility: visible;
+        width: 100%;
+    }
+    
+    .page-subtitle {
+        font-size: 0.75em;
+        font-style: italic;
+        user-select: none;
+        color: v.$white-opc75
+    }
+    .page-subtitle.pink {
+        color: v.$pink;
+    }
+    .page-subtitle.purple {
+        color: v.$purple;
+    }
+    .page-subtitle.yellow {
+        color: v.$yellow;
+    }
+    .page-subtitle.green {
+        color: v.$green;
+    }
+    .page-subtitle.teal {
+        color: v.$teal;
+    }
+}

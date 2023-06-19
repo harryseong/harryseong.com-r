@@ -1,8 +1,8 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import appConfigReducer from '../components/app-config/AppConfigSlice'
-import counterReducer from '../components/counter/counterSlice';
-import placesReducer from '../components/places/placesSlice';
-import authReducer from '../components/auth/authSlice';
+import appConfigReducer from '../components/shared/app-config/AppConfigSlice'
+import counterReducer from '../components/pages/counter/counterSlice';
+import placesReducer from '../components/pages/places/placesSlice';
+import authReducer from '../components/shared/auth/authSlice';
 
 export const store = configureStore({
   reducer: {

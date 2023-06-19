@@ -1,15 +1,15 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from '../components/layout/Layout';
-import { Counter } from '../components/counter/Counter';
-import { Home } from '../components/home/Home';
-import { About } from '../components/about/About'
-import { Places } from '../components/places/Places'
+import { Counter } from '../components/pages/counter/Counter';
+import { Home } from '../components/pages/home/Home';
+import { About } from '../components/pages/about/About'
+import { Places } from '../components/pages/places/Places'
 import './App.scss';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faLocationPin, faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
 import { useAppSelector } from '../app/hooks';
-import { selectAppConfig } from '../components/app-config/AppConfigSlice';
+import { selectAppConfig } from '../components/shared/app-config/AppConfigSlice';
 
 function App() {
   library.add(faLocationPin, faAngleLeft, faAngleRight)
