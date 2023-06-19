@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { CachedPlaces, LocalStorageService } from '../../services/local-storage/localStorageService';
 import moment from 'moment';
+import { TypeAnimation } from 'react-type-animation';
 
 
 export function Places() {
@@ -171,7 +172,14 @@ export function Places() {
         <div className='content'>
             <div className='page-header'>
                 <div className='page-title'>places</div>
-                <div className='page-subtitle teal'>where we've been, where we are...</div>
+                <TypeAnimation
+                    className='page-subtitle teal'
+                    sequence={['where we\'ve been, where we are...']}
+                    wrapper="div"
+                    speed={80}
+                    cursor={false}
+                    repeat={0}
+                />
             </div>
 
             <div ref={mapContainer} className="map-container" />
