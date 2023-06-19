@@ -48,11 +48,11 @@ export function Places() {
                 const currentTimestamp: number = moment().valueOf();
 
                 if (currentTimestamp - cachedTimestamp > placesTtl) {
-                    console.log('Cached places TTL exceeded. Fetching places.')
                     dispatch(fetchPlacesThunk());
+                    console.log('Cached places TTL exceeded. Fetching places.')
                 } else {
-                    console.log('Places fetched from cache.');
                     dispatch(setPlaces(cachedPlaces.places));
+                    console.log('Places fetched from cache.');
                 }
             }
         }
