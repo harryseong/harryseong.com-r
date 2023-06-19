@@ -1,0 +1,30 @@
+@use '/src/variables' as v;
+
+// Animation for "Playing Now on Spotify", "Loading"
+@keyframes fadeIn {
+    from { opacity: 0; }
+  }
+  .animate-flicker {
+    animation: fadeIn 1s infinite alternate;
+}
+
+div.loading {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    div.circular-progress, div.type-animation {
+        display: flex;
+        justify-content: center;
+    }
+
+    .loading-text {
+        margin-top: 1.2em;
+        font-weight: 500;
+        font-size: 1em;
+        letter-spacing: 0.2em;
+        user-select: none;
+        color: v.$white;
+    }
+}

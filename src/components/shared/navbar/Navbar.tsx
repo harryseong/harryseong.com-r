@@ -1,3 +1,5 @@
+import './Navbar.module.scss';
+
 import { Link } from 'react-router-dom';
 
 import { AppBar, Button, Box, Container, IconButton, Toolbar } from '@mui/material';

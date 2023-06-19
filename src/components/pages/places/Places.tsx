@@ -10,6 +10,7 @@ import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { CachedPlaces, LocalStorageService } from '../../../services/local-storage/localStorageService';
 import moment from 'moment';
 import { PageHeader, PageHeaderProps } from '../../shared/page-header/PageHeader';
+import { Loading } from '../../shared/loading/Loading';
 
 
 export function Places() {
@@ -163,24 +164,16 @@ export function Places() {
     </>
 
     const selectedPlace = useSelector((state: RootState) => state.places.value.selectedPlace);
-    const selectedPlaceDetails = placesState.status === 'succeeded' ?
+    const selectedPlaceDetails = <>
+        <h1 className='place-name'>
+            <FontAwesomeIcon className='marker-icon' icon={icon({ name: 'location-dot' })} /> {selectedPlace?.fullName}
+        </h1>
+        <div className='place-years'>{selectedPlace?.years.start}-{selectedPlace?.years.end == null ? 'Present' : selectedPlace?.years.end}</div>
+        <div className='place-text'>{selectedPlace?.description}</div>
+    </>
+
+    const placesContent = placesState.status === 'succeeded' ?
         <>
-            <h1 className='place-name'>
-                <FontAwesomeIcon className='marker-icon' icon={icon({ name: 'location-dot' })} /> {selectedPlace?.fullName}
-            </h1>
-            <div className='place-years'>{selectedPlace?.years.start}-{selectedPlace?.years.end == null ? 'Present' : selectedPlace?.years.end}</div>
-            <div className='place-text'>{selectedPlace?.description}</div>
-        </>
-        :
-        <div>Loading...</div>
-
-
-    return (
-        <div className='content'>
-            <PageHeader title={pageHeaderProps.title} subtitle={pageHeaderProps.subtitle} color={pageHeaderProps.color} />
-
-            <div ref={mapContainer} className="map-container" />
-
             <div className='places-nav'>
                 <div className='places-nav-slider'>
                     {placesNavButton('then')}{placesNavSlider}{placesNavButton('now')}
@@ -196,6 +189,17 @@ export function Places() {
                     {selectedPlaceDetails}
                 </div>
             </div>
+        </> :
+        <Loading />
+
+
+    return (
+        <div className='content'>
+            <PageHeader title={pageHeaderProps.title} subtitle={pageHeaderProps.subtitle} color={pageHeaderProps.color} />
+
+            <div ref={mapContainer} className="map-container" />
+
+            {placesContent}
         </div>
     );
 }
