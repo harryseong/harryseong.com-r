@@ -6,6 +6,8 @@ import { RootState } from '../../../app/store';
 import { fetchCurrentlyPlayingThunk } from './musicSlice';
 import { Loading } from '../../shared/loading/Loading';
 import { TypeAnimation } from 'react-type-animation';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 
 export function Music() {
@@ -33,7 +35,7 @@ export function Music() {
             // Cleanup code run when component is removed from page:
             clearInterval(interval);
         };
-    }, [musicState]);
+    }, [dispatch, musicState]);
 
     const musicContent = (
         musicState.status === 'idle' || !currentlyPlaying ?
@@ -41,10 +43,12 @@ export function Music() {
             (
                 currentlyPlaying && currentlyPlaying.is_playing ?
                     <>
-                        <img src={currentlyPlaying.item.album.images[0].url} className="album-cover" />
+                        <img src={currentlyPlaying.item.album.images[0].url} alt='album cover' className="album-cover" />
                     </>
                     :
                     <>
+                        <h1 className="music-header">How boring <FontAwesomeIcon icon={regular("face-meh")} /></h1>
+
                         <TypeAnimation
                             className={'test'}
                             sequence={['Harry is not listening to anything right now. Check back later, maybe he\'ll be jamming to some tunes then!']}

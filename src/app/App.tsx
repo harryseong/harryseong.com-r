@@ -6,14 +6,14 @@ import { About } from '../components/pages/about/About'
 import { Places } from '../components/pages/places/Places'
 import './App.scss';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faLocationPin, faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import { faLocationPin, faAngleLeft, faAngleRight, faFaceMeh } from '@fortawesome/free-solid-svg-icons'
 
 import { useAppSelector } from '../app/hooks';
 import { selectAppConfig } from '../components/shared/app-config/AppConfigSlice';
 import { Music } from '../components/pages/music/Music';
 
 function App() {
-  library.add(faLocationPin, faAngleLeft, faAngleRight)
+  library.add(faLocationPin, faAngleLeft, faAngleRight, faFaceMeh)
 
   const darkMode: boolean = useAppSelector(selectAppConfig);
 

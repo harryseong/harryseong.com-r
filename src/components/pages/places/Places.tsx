@@ -6,7 +6,7 @@ import { Coords, Place, fetchPlacesThunk, selectNextPlace, selectPlace, selectPr
 import mapboxgl from 'mapbox-gl';
 import { Slider } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { CachedPlaces, LocalStorageService } from '../../../services/local-storage/localStorageService';
 import moment from 'moment';
 import { PageHeader, PageHeaderProps } from '../../shared/page-header/PageHeader';
@@ -124,11 +124,11 @@ export function Places() {
         return type === 'then' ?
             (
                 <button onClick={handleClick} className='change-place-btn'>
-                    <FontAwesomeIcon icon={icon({ name: 'angle-left' })} /> then
+                    <FontAwesomeIcon icon={solid("angle-left")} /> then
                 </button>
             ) : (
                 <button onClick={handleClick} className='change-place-btn'>
-                    now <FontAwesomeIcon icon={icon({ name: 'angle-right' })} />
+                    now <FontAwesomeIcon icon={solid("angle-right")} />
                 </button>
             )
     }
@@ -166,7 +166,7 @@ export function Places() {
     const selectedPlace = useSelector((state: RootState) => state.places.value.selectedPlace);
     const selectedPlaceDetails = <>
         <h1 className='place-name'>
-            <FontAwesomeIcon className='marker-icon' icon={icon({ name: 'location-dot' })} /> {selectedPlace?.fullName}
+            <FontAwesomeIcon className='marker-icon' icon={solid("location-dot")} /> {selectedPlace?.fullName}
         </h1>
         <div className='place-years'>{selectedPlace?.years.start}-{selectedPlace?.years.end == null ? 'Present' : selectedPlace?.years.end}</div>
         <div className='place-text'>{selectedPlace?.description}</div>
