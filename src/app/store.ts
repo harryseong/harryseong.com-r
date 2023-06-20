@@ -1,14 +1,16 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import appConfigReducer from '../components/shared/app-config/AppConfigSlice'
-import counterReducer from '../components/pages/counter/counterSlice';
-import placesReducer from '../components/pages/places/placesSlice';
 import authReducer from '../components/shared/auth/authSlice';
+import counterReducer from '../components/pages/counter/counterSlice';
+import musicReducer from '../components/pages/music/musicSlice';
+import placesReducer from '../components/pages/places/placesSlice';
 
 export const store = configureStore({
   reducer: {
     appConfig: appConfigReducer,
     auth: authReducer,
     counter: counterReducer,
+    music: musicReducer,
     places: placesReducer,
   },
 });

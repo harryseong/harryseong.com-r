@@ -101,17 +101,17 @@ export const placesSlice = createSlice({
             state.status = 'loading';
         })
         builder.addCase(fetchPlacesThunk.fulfilled, (state, action) => {
-            state.status = 'succeeded';
             const places = action.payload.data.sort((a: Place, b: Place) => a.order - b.order);
             state.value.places = places;
             state.value.selectedPlace = state.value.places[0];
             state.error = '';
             LocalStorageService.setPlaces(places);
+            state.status = 'succeeded';
         })
         builder.addCase(fetchPlacesThunk.rejected, (state, action) => {
-            state.status = 'failed';
             state.value.places = [];
             state.error = JSON.stringify(action.error.message);
+            state.status = 'failed';
         })
     }
 });

@@ -26,6 +26,7 @@ export function Navbar() {
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         <Button component={Link} to="/" sx={{ my: 2, color: 'white', display: 'block' }}>HARRY SEONG</Button>
                         <Button component={Link} to="/places" sx={{ my: 2, color: 'white', display: 'block' }}>Places</Button>
+                        <Button component={Link} to="/music" sx={{ my: 2, color: 'white', display: 'block' }}>Music</Button>
                         <Button component={Link} to="/counter" sx={{ my: 2, color: 'white', display: 'block' }}>Counter</Button>
                         <Button component={Link} to="/about" sx={{ my: 2, color: 'white', display: 'block' }}>About</Button>
 

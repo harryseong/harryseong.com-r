@@ -10,6 +10,7 @@ import { faLocationPin, faAngleLeft, faAngleRight } from '@fortawesome/free-soli
 
 import { useAppSelector } from '../app/hooks';
 import { selectAppConfig } from '../components/shared/app-config/AppConfigSlice';
+import { Music } from '../components/pages/music/Music';
 
 function App() {
   library.add(faLocationPin, faAngleLeft, faAngleRight)
@@ -23,9 +24,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />}></Route>
-            <Route path="/counter" element={<Counter />}></Route>
             <Route path="/places" element={<Places />}></Route>
+            <Route path="/music" element={<Music />}></Route>
             <Route path="/about" element={<About />}></Route>
+            <Route path="/counter" element={<Counter />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
