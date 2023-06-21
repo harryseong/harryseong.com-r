@@ -1,5 +1,9 @@
 @use '/src/variables' as v;
 
+.loading-div {
+    margin-top: 8em;
+}
+
 .not-playing {
     display: flex;
     flex-direction: row;
