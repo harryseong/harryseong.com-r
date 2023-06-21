@@ -87,8 +87,8 @@ export function Music() {
     ) : (<></>);
 
     const musicContent = (
-        musicState.status === 'idle' ?
-            <Loading /> :
+        musicState.status === 'idle' || (musicState.status == 'loading' && currentlyPlaying == null) ?
+            <div className='loading-div'><Loading /></div> :
             (currentlyPlaying && currentlyPlaying.is_playing ? musicPlaying : musicNotPlaying)
     );
 
