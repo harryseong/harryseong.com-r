@@ -27,17 +27,15 @@ export function Places() {
     const places: Place[] = useSelector((state: RootState) => state.places).value.places;
 
     // Mapbox GL JS
-    mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycnlzZW9uZyIsImEiOiJja2s1cXJ6b3owbm1mMm90aDdhamllYmkyIn0.OEEkiykq7mJpEammhbSGuQ';
+    const mapboxAccessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
+    mapboxgl.accessToken = mapboxAccessToken ? mapboxAccessToken : '';
     const map: React.MutableRefObject<any> = useRef(null);
     const mapContainer: React.MutableRefObject<any> = useRef(null);
 
 
     useEffect(() => {
-        // Setup code run upon change on every render:
-
         // Fetch places data once per app load.
         if (placesState.status === 'idle') {
-
             // Attempt places data fetch from local storage:
             const cachedPlaces: CachedPlaces = LocalStorageService.getPlaces();
             if (cachedPlaces == null) {

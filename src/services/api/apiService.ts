@@ -4,12 +4,12 @@ export class ApiService {
 
     static async fetchPlaces(): Promise<AxiosResponse> {
         return axios
-            .get(`https://api.harryseong.com/dev/v1/places`,
+            .get(`${process.env.REACT_APP_V1_API_ENDPOINT}/places`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
-                        'x-api-key': 'test-api-key'
+                        'x-api-key': process.env.REACT_APP_API_KEY
                     }
                 })
             .then((response) => response)
@@ -17,12 +17,12 @@ export class ApiService {
 
     static async fetchCurrentlyPlaying(): Promise<AxiosResponse> {
         return axios
-            .get(`https://api.harryseong.com/dev/v1/music/spotify/currently-playing`,
+            .get(`${process.env.REACT_APP_V1_API_ENDPOINT}/music/spotify/currently-playing`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
-                        'x-api-key': 'test-api-key'
+                        'x-api-key': process.env.REACT_APP_API_KEY
                     }
                 })
             .then((response) => response)
