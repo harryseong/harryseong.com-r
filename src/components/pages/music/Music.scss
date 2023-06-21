@@ -1,5 +1,73 @@
 @use '/src/variables' as v;
 
-.album-cover {
-    height: 18em;
+.not-playing {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .not-playing-content {
+        width: 50%;
+
+        .not-playing-text {
+            color: v.$white-opc75;
+        }
+    }    
+}
+
+.playing {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .playing-content {
+        display: flex;
+        flex-direction: column;
+
+        .album-cover {
+            height: 18em;
+        }
+
+        .song-name-div {
+            margin-top: 1em;
+            width: 100%;
+        
+            .song-name {
+                user-select: none;
+                text-decoration: underline solid transparent;
+                font-size: 1.15em;
+                transition: 200ms;
+            }
+            .song-name.long-name {
+                font-size: 0.9em;
+            }
+            .song-name:hover {
+                text-decoration: underline solid currentcolor;
+                transition: 200ms;
+            }
+            .song-name, .song-name:hover {
+                color: v.$white;
+                font-weight: 600;
+                text-transform: lowercase;
+            }
+        }
+        
+        .artists-div {
+            margin-top: 0.5em;
+            width: 100%;
+            font-size: 0.7em;
+            color: v.$green-opc80;
+        }
+    
+        .playing-now-text {
+            margin-top: 3em;
+            font-size: 1em;
+            font-weight: 500;
+            text-transform: lowercase;
+            user-select: none;
+
+            .spotify-logo {
+                height: 1.2em;
+            }
+        }
+    }
 }

@@ -3,11 +3,11 @@ import './Music.scss';
 import { PageHeader, PageHeaderProps } from '../../shared/page-header/PageHeader';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../app/store';
-import { fetchCurrentlyPlayingThunk } from './musicSlice';
 import { Loading } from '../../shared/loading/Loading';
 import { TypeAnimation } from 'react-type-animation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { fetchCurrentlyPlayingThunk } from './musicSlice';
 
 
 export function Music() {
@@ -37,30 +37,60 @@ export function Music() {
         };
     }, [dispatch, musicState]);
 
-    const musicContent = (
-        musicState.status === 'idle' || !currentlyPlaying ?
-            <Loading /> :
-            (
-                currentlyPlaying && currentlyPlaying.is_playing ?
-                    <>
-                        <img src={currentlyPlaying.item.album.images[0].url} alt='album cover' className="album-cover" />
-                    </>
-                    :
-                    <>
-                        <h1 className="music-header">How boring <FontAwesomeIcon icon={regular("face-meh")} /></h1>
+    const musicNotPlaying = (
+        <div className='not-playing'>
+            <div className='not-playing-content'>
+                <h1 className="not-playing-header">How boring <FontAwesomeIcon icon={regular("face-meh")} /></h1>
+                <TypeAnimation
+                    className={'not-playing-text'}
+                    sequence={['Harry is not listening to anything right now. Check back later, maybe he\'ll be jamming to some tunes then!']}
+                    wrapper="div" speed={85} cursor={false} repeat={0}
+                />
+            </div>
+        </div>
+    );
 
-                        <TypeAnimation
-                            className={'test'}
-                            sequence={['Harry is not listening to anything right now. Check back later, maybe he\'ll be jamming to some tunes then!']}
-                            wrapper="div"
-                            speed={80}
-                            cursor={false}
-                            repeat={0}
-                        />
-                    </>
+    const artists = () => {
+        if (currentlyPlaying && currentlyPlaying.item) {
+            const artists = currentlyPlaying.item.artists;
+
+            return (
+                <div className='artists-div'>
+                    {artists.map((artist: any, index: number) => <>
+                        <span className='artist-name'>{artist.name}</span>
+                        {index < artists.length - 1 && <span>, </span>}
+                    </>)}
+                </div>
             )
+        }
 
-    )
+        return;
+    }
+
+    const musicPlaying = (currentlyPlaying && currentlyPlaying.item) ? (
+        <div className='playing'>
+            <div className='playing-content'>
+                <img src={currentlyPlaying.item.album.images[0].url} alt='album cover' className="album-cover" />
+
+                <div className='song-name-div'>
+                    <a href={currentlyPlaying.item.uri} className={"song-name" + (currentlyPlaying.item.name.length > 40 ? " long-name" : "")}>{currentlyPlaying.item.name}</a>
+                </div>
+
+                {artists()}
+
+                <div className='playing-now-text animate-flicker'>
+                    <FontAwesomeIcon icon={regular("circle-play")} />&nbsp;playing now on harry's&nbsp;
+                    <img className="spotify-logo" src="/Spotify_Logo_RGB_Green.png" />
+                </div>
+            </div>
+        </div>
+    ) : (<></>);
+
+    const musicContent = (
+        musicState.status === 'idle' ?
+            <Loading /> :
+            (currentlyPlaying && currentlyPlaying.is_playing ? musicPlaying : musicNotPlaying)
+    );
 
     return (
         <div className='content'>

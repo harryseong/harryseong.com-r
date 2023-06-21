@@ -10,7 +10,8 @@ export interface MusicState {
     error: string;
 }
 
-const initialState: MusicState = {
+const initialState: MusicState =
+{
     value: {
         currentlyPlaying: null
     },
@@ -33,7 +34,7 @@ export const musicSlice = createSlice({
             state.status = 'loading';
         });
         builder.addCase(fetchCurrentlyPlayingThunk.fulfilled, (state, action) => {
-            state.value.currentlyPlaying = action.payload.data;
+            state.value.currentlyPlaying = action.payload.data !== "" ? action.payload.data : null;
             state.status = 'succeeded';
         });
         builder.addCase(fetchCurrentlyPlayingThunk.rejected, (state, action) => {
