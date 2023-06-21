@@ -4,7 +4,7 @@ export class ApiService {
 
     static async fetchPlaces(): Promise<AxiosResponse> {
         return axios
-            .get(`https://api.harryseong.com/test/v1/places`,
+            .get(`https://api.harryseong.com/dev/v1/places`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
