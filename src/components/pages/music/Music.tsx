@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import './Music.scss';
+import { useEffect } from 'react';
 import { PageHeader, PageHeaderProps } from '../../shared/page-header/PageHeader';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../app/store';
@@ -80,14 +80,14 @@ export function Music() {
 
                 <div className='playing-now-text animate-flicker'>
                     <FontAwesomeIcon icon={regular("circle-play")} />&nbsp;playing now on harry's&nbsp;
-                    <img className="spotify-logo" src="/Spotify_Logo_RGB_Green.png" />
+                    <img className="spotify-logo" alt='spotify logo' src="/Spotify_Logo_RGB_Green.png" />
                 </div>
             </div>
         </div>
     ) : (<></>);
 
     const musicContent = (
-        musicState.status === 'idle' || (musicState.status == 'loading' && currentlyPlaying == null) ?
+        musicState.status === 'idle' || (musicState.status === 'loading' && currentlyPlaying == null) ?
             <div className='loading-div'><Loading /></div> :
             (currentlyPlaying && currentlyPlaying.is_playing ? musicPlaying : musicNotPlaying)
     );

@@ -10,6 +10,7 @@ export interface AuthState {
             phoneNumber: string;
             email: string;
             role: 'user' | 'admin';
+            authToken: string;
         } | null;
         authenticated: boolean;
     }
@@ -33,7 +34,20 @@ export const authSlice = createSlice({
                 photoUrl: null,
                 phoneNumber: '+1-952-288-8879',
                 email: 'harryseong@gmail.com',
-                role: 'admin'
+                role: 'user',
+                authToken: 'testauthtoken123'
+            };
+            state.value.authenticated = true;
+        },
+        logonAdmin: (state) => {
+            state.value.user = {
+                firstName: 'Lando',
+                lastName: 'Norris',
+                photoUrl: null,
+                phoneNumber: '+1-123-456-7890',
+                email: 'landonorris@gmail.com',
+                role: 'admin',
+                authToken: 'testauthtoken123'
             };
             state.value.authenticated = true;
         },
@@ -45,7 +59,7 @@ export const authSlice = createSlice({
     extraReducers: {}
 });
 
-export const { logon, logoff } = authSlice.actions;
+export const { logon, logonAdmin, logoff } = authSlice.actions;
 
 export const selectAuth = (state: RootState) => state.auth.value;
 

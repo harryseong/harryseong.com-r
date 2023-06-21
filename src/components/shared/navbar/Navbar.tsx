@@ -1,14 +1,12 @@
-import './Navbar.module.scss';
+import './Navbar.scss';
 
 import { Link } from 'react-router-dom';
 
-import { AppBar, Button, Box, Container, IconButton, Toolbar } from '@mui/material';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { regular } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
+import { AppBar, Button, Box, Container, Toolbar } from '@mui/material';
 
 import { useAppSelector, useAppDispatch } from '../../../app/hooks';
-import { selectAppConfig, toggle } from '../app-config/AppConfigSlice'
-import { logoff, logon } from '../auth/authSlice';
+import { selectAppConfig } from '../app-config/AppConfigSlice'
+import { logoff, logon, logonAdmin } from '../auth/authSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../app/store';
 
@@ -23,21 +21,23 @@ export function Navbar() {
         <AppBar position="static" color={darkMode ? "primary" : "secondary"} sx={{ transition: '0.3s' }} className={darkMode ? 'dark' : 'light'}>
             <Container>
                 <Toolbar>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        <Button component={Link} to="/" sx={{ my: 2, color: 'white', display: 'block' }}>HARRY SEONG</Button>
-                        <Button component={Link} to="/places" sx={{ my: 2, color: 'white', display: 'block' }}>Places</Button>
-                        <Button component={Link} to="/music" sx={{ my: 2, color: 'white', display: 'block' }}>Music</Button>
-                        <Button component={Link} to="/counter" sx={{ my: 2, color: 'white', display: 'block' }}>Counter</Button>
-                        <Button component={Link} to="/about" sx={{ my: 2, color: 'white', display: 'block' }}>About</Button>
-
-                        {authState.value.authenticated ?
-                            <Button onClick={() => dispatch(logoff())} sx={{ my: 2, color: 'white', display: 'block' }}>Logout</Button> :
-                            <Button onClick={() => dispatch(logon())} sx={{ my: 2, color: 'white', display: 'block' }}>Login</Button>
-                        }
+                    <Box sx={{ flexGrow: 1, display: { md: 'flex' } }}>
+                        <Button component={Link} to="/" sx={{ my: 1, color: 'white', display: 'block' }}>HARRY SEONG</Button>
+                        <Button component={Link} to="/places" sx={{ my: 1, color: 'white', display: 'block' }}>Places</Button>
+                        <Button component={Link} to="/music" sx={{ my: 1, color: 'white', display: 'block' }}>Music</Button>
+                        <Button component={Link} to="/authenticated" sx={{ my: 1, color: 'white', display: 'block' }}>Authenticated</Button>
+                        <Button component={Link} to="/admin" sx={{ my: 1, color: 'white', display: 'block' }}>Admin</Button>
                     </Box>
-                    <IconButton onClick={() => dispatch(toggle())} aria-label="toggle between dark and light mode" size="large">
+                    {authState.value.authenticated ?
+                        <Button onClick={() => dispatch(logoff())} sx={{ my: 1, color: 'white', display: 'block' }}>Logout</Button> :
+                        <>
+                            <Button onClick={() => dispatch(logon())} sx={{ my: 1, color: 'white', display: 'block' }}>Login</Button>
+                            <Button onClick={() => dispatch(logonAdmin())} sx={{ my: 1, color: 'white', display: 'block' }}>Login (admin)</Button>
+                        </>
+                    }
+                    {/* <IconButton onClick={() => dispatch(toggle())} aria-label="toggle between dark and light mode" size="large">
                         {darkMode ? <FontAwesomeIcon icon={regular('sun')} /> : <FontAwesomeIcon icon={regular('moon')} />}
-                    </IconButton>
+                    </IconButton> */}
                 </Toolbar>
             </Container>
         </AppBar>

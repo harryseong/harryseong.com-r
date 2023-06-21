@@ -1,8 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from '../components/layout/Layout';
-import { Counter } from '../components/pages/counter/Counter';
 import { Home } from '../components/pages/home/Home';
-import { About } from '../components/pages/about/About'
 import { Places } from '../components/pages/places/Places'
 import './App.scss';
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -11,6 +9,11 @@ import { faLocationPin, faAngleLeft, faAngleRight, faFaceMeh } from '@fortawesom
 import { useAppSelector } from '../app/hooks';
 import { selectAppConfig } from '../components/shared/app-config/AppConfigSlice';
 import { Music } from '../components/pages/music/Music';
+import { Admin } from '../components/pages/admin/Admin';
+import ProtectedRoute from '../components/shared/auth/protectedRoute';
+import ProtectedRouteAdmin from '../components/shared/auth/protectedRouteAdmin';
+import { Authenticated } from '../components/pages/authenticated/Authenticated';
+
 
 function App() {
   library.add(faLocationPin, faAngleLeft, faAngleRight, faFaceMeh)
@@ -26,8 +29,18 @@ function App() {
             <Route index element={<Home />}></Route>
             <Route path="/places" element={<Places />}></Route>
             <Route path="/music" element={<Music />}></Route>
-            <Route path="/about" element={<About />}></Route>
-            <Route path="/counter" element={<Counter />}></Route>
+
+            <Route path="/authenticated" element={
+              <ProtectedRoute>
+                <Authenticated />
+              </ProtectedRoute>
+            }></Route>
+
+            <Route path="/admin" element={
+              <ProtectedRouteAdmin>
+                <Admin />
+              </ProtectedRouteAdmin>
+            }></Route>
           </Route>
         </Routes>
       </BrowserRouter>
