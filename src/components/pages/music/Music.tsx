@@ -7,7 +7,7 @@ import { Loading } from '../../shared/loading/Loading';
 import { TypeAnimation } from 'react-type-animation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { regular } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { fetchCurrentlyPlayingThunk } from './musicSlice';
+import { fetchCurrentlyPlayingThunk, fetchInitialPlayingThunk } from './musicSlice';
 
 
 export function Music() {
@@ -23,16 +23,15 @@ export function Music() {
     const currentlyPlaying: any = useSelector((state: RootState) => state.music).value.currentlyPlaying;
 
     useEffect(() => {
+        if (musicState.status === 'idle') {
+            dispatch(fetchInitialPlayingThunk());
+        }
+
         const interval = setInterval(() => {
             dispatch(fetchCurrentlyPlayingThunk());
         }, 5000);
 
-        if (musicState.status === 'idle') {
-            dispatch(fetchCurrentlyPlayingThunk());
-        }
-
         return () => {
-            // Cleanup code run when component is removed from page:
             clearInterval(interval);
         };
     }, [dispatch, musicState]);
@@ -87,7 +86,7 @@ export function Music() {
     ) : (<></>);
 
     const musicContent = (
-        musicState.status === 'idle' || (musicState.status === 'loading' && currentlyPlaying == null) ?
+        musicState.status === 'idle' || musicState.status === 'initializing' ?
             <div className='loading-div'><Loading /></div> :
             (currentlyPlaying && currentlyPlaying.is_playing ? musicPlaying : musicNotPlaying)
     );

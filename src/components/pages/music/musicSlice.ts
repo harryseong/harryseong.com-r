@@ -6,18 +6,21 @@ export interface MusicState {
     value: {
         currentlyPlaying: any;
     };
-    status: 'idle' | 'loading' | 'succeeded' | 'failed';
+    status: 'idle' | 'initializing' | 'loading' | 'succeeded' | 'failed';
     error: string;
 }
 
-const initialState: MusicState =
-{
+const initialState: MusicState = {
     value: {
         currentlyPlaying: null
     },
     status: 'idle',
     error: ''
 }
+
+export const fetchInitialPlayingThunk = createAsyncThunk('music/initialPlaying', () => {
+    return ApiService.fetchCurrentlyPlaying();
+});
 
 export const fetchCurrentlyPlayingThunk = createAsyncThunk('music/currentlyPlaying', () => {
     return ApiService.fetchCurrentlyPlaying();
@@ -26,10 +29,20 @@ export const fetchCurrentlyPlayingThunk = createAsyncThunk('music/currentlyPlayi
 export const musicSlice = createSlice({
     name: 'music',
     initialState,
-    reducers: {
-
-    },
+    reducers: {},
     extraReducers: (builder) => {
+        builder.addCase(fetchInitialPlayingThunk.pending, (state) => {
+            state.status = 'initializing';
+        });
+        builder.addCase(fetchInitialPlayingThunk.fulfilled, (state, action) => {
+            state.value.currentlyPlaying = action.payload.data !== "" ? action.payload.data : null;
+            state.status = 'succeeded';
+        });
+        builder.addCase(fetchInitialPlayingThunk.rejected, (state, action) => {
+            state.value.currentlyPlaying = null;
+            state.error = JSON.stringify(action.error.message);
+            state.status = 'failed';
+        });
         builder.addCase(fetchCurrentlyPlayingThunk.pending, (state) => {
             state.status = 'loading';
         });
