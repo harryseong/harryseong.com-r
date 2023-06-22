@@ -2,14 +2,17 @@ import './Loading.scss';
 import { CircularProgress } from "@mui/material";
 import { TypeAnimation } from 'react-type-animation';
 
+export interface LoadingProps {
+    color: string;
+}
 
-export function Loading() {
+export function Loading(props: LoadingProps) {
 
     return (
         <div className="loading">
             <div className='circular-progress'>
                 <CircularProgress
-                    size={75}
+                    size={75} sx={{ color: props.color }}
                 />
             </div>
 

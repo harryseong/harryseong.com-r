@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../../app/store";
 
+
 export interface AuthState {
     value: {
         user: {
@@ -54,6 +55,7 @@ export const authSlice = createSlice({
         logoff: (state) => {
             state.value.user = null;
             state.value.authenticated = false;
+            alert('You have been logged off.');
         }
     },
     extraReducers: {}

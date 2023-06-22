@@ -87,7 +87,7 @@ export function Music() {
 
     const musicContent = (
         musicState.status === 'idle' || musicState.status === 'initializing' ?
-            <div className='loading-div'><Loading /></div> :
+            <div className='loading-div'><Loading color={pageHeaderProps.color} /></div> :
             (currentlyPlaying && currentlyPlaying.is_playing ? musicPlaying : musicNotPlaying)
     );
 

@@ -143,6 +143,7 @@ export function Places() {
             marks
             min={1}
             max={placesState.value.places.length}
+            sx={{ color: 'white' }}
         />
     </>
 
@@ -188,7 +189,7 @@ export function Places() {
                 </div>
             </div>
         </> :
-        <Loading />
+        <Loading color={pageHeaderProps.color} />
 
 
     return (
