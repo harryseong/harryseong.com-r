@@ -1,6 +1,5 @@
-import { useSelector } from "react-redux";
 import { PageHeader, PageHeaderProps } from "../../shared/page-header/PageHeader"
-import { RootState } from "../../../app/store";
+import { Card, CardContent, Typography } from "@mui/material";
 
 
 export function Authenticated() {
@@ -10,19 +9,27 @@ export function Authenticated() {
         color: 'pink'
     };
 
-    const authState = useSelector((state: RootState) => state.auth);
+    const authCard = (
+        <Card variant="outlined" sx={{ minWidth: 450, maxWidth: 450, outlineColor: 'white', backgroundColor: 'peachpuff', color: 'black' }}>
+            <CardContent>
+                <Typography variant="h5" component="div">
+                    Authenticated Card
+                </Typography>
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    You can only view this page if you have been <b>authenticated</b>.
+                </Typography>
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro consequatur eos, expedita dolor inventore veniam aliquam omnis suscipit voluptatibus reprehenderit dicta quod impedit sequi distinctio! Deserunt dicta quae inventore? Debitis?
+                </Typography>
+            </CardContent>
+        </Card>
+    )
 
     return (
         <div className='content'>
             <PageHeader title={pageHeaderProps.title} subtitle={pageHeaderProps.subtitle} color={pageHeaderProps.color} />
 
-            <h2>For authenticated users only.</h2>
-
-            <h3>Authenticated: {authState.value.authenticated ? 'yes' : 'no'}</h3>
-            {authState.value.user && <h3>Role: {authState.value.user?.role}</h3>}
-
-            <div>{JSON.stringify(authState.value)}</div>
+            {authCard}
         </div>
     );
 }
-
