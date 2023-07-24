@@ -10,8 +10,8 @@ import { useAppSelector } from '../app/hooks';
 import { selectAppConfig } from '../components/shared/app-config/AppConfigSlice';
 import { Music } from '../components/pages/music/Music';
 import { Admin } from '../components/pages/admin/Admin';
-import ProtectedRoute from '../components/shared/auth/protectedRoute';
-import ProtectedRouteAdmin from '../components/shared/auth/protectedRouteAdmin';
+import ProtectedRoute from '../utils/auth/protectedRoute';
+import ProtectedRouteAdmin from '../utils/auth/protectedRouteAdmin';
 import { Authenticated } from '../components/pages/authenticated/Authenticated';
 
 

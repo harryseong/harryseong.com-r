@@ -6,7 +6,7 @@ import { AppBar, Button, Box, Container, Toolbar, Avatar, Menu, MenuItem, Typogr
 
 import { useAppSelector, useAppDispatch } from '../../../app/hooks';
 import { selectAppConfig } from '../app-config/AppConfigSlice'
-import { logoff, logon, logonAdmin } from '../auth/authSlice';
+import { logoff, logon, logonAdmin } from '../../../utils/auth/authSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../app/store';
 import React from 'react';

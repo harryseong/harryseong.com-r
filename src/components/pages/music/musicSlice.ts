@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ApiService } from "../../../services/api/apiService";
+import { ApiService } from "../../../utils/api/apiService";
 
 
 export interface MusicState {

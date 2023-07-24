@@ -7,7 +7,7 @@ import mapboxgl from 'mapbox-gl';
 import { Slider } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
-import { CachedPlaces, LocalStorageService } from '../../../services/local-storage/localStorageService';
+import { CachedPlaces, LocalStorageService } from '../../../utils/local-storage/localStorageService';
 import moment from 'moment';
 import { PageHeader, PageHeaderProps } from '../../shared/page-header/PageHeader';
 import { Loading } from '../../shared/loading/Loading';
