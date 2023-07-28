@@ -72,9 +72,9 @@ export const placesSlice = createSlice({
             state.status = 'succeeded';
         },
         selectPlace: (state, action: PayloadAction<number>) => {
-            const places = (state.value.places == null) ? null : state.value.places;
+            const places = state.value.places ?? null;
             const selectedPlace = (places == null) ? null : places.find(place => place.place_id === action.payload);
-            state.value.selectedPlace = (selectedPlace == null) ? null : selectedPlace;
+            state.value.selectedPlace = selectedPlace ?? null;
         },
         selectPreviousPlace: (state) => {
             if (state.value.selectedPlace != null) {

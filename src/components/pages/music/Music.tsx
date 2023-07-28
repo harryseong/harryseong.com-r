@@ -50,7 +50,7 @@ export function Music() {
     );
 
     const artists = () => {
-        if (currentlyPlaying && currentlyPlaying.item) {
+        if (currentlyPlaying?.item) {
             const artists = currentlyPlaying.item.artists;
 
             return (
@@ -62,11 +62,9 @@ export function Music() {
                 </div>
             )
         }
-
-        return;
     }
 
-    const musicPlaying = (currentlyPlaying && currentlyPlaying.item) ? (
+    const musicPlaying = (currentlyPlaying?.item) ? (
         <div className='playing'>
             <div className='playing-content'>
                 <img src={currentlyPlaying.item.album.images[0].url} alt='album cover' className="album-cover" />
@@ -85,10 +83,11 @@ export function Music() {
         </div>
     ) : (<></>);
 
+    const musicStatus = currentlyPlaying?.is_playing ? musicPlaying : musicNotPlaying;
+
     const musicContent = (
         musicState.status === 'idle' || musicState.status === 'initializing' ?
-            <div className='loading-div'><Loading color={pageHeaderProps.color} /></div> :
-            (currentlyPlaying && currentlyPlaying.is_playing ? musicPlaying : musicNotPlaying)
+            <div className='loading-div'><Loading color={pageHeaderProps.color} /></div> : musicStatus
     );
 
     return (

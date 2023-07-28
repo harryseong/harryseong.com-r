@@ -1,4 +1,3 @@
-import './About.scss';
 import { PageHeader, PageHeaderProps } from '../../shared/page-header/PageHeader';
 
 
