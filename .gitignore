@@ -2,3 +2,5 @@ node_modules
 build
 .DS_Store
 .env
+.scannerwork/.sonar_lock
+.scannerwork/report-task.txt
